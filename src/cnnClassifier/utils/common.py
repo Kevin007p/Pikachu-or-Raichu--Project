@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 import base64
 
+
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """Reads yaml file and returns a ConfigBox.
@@ -35,7 +36,6 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise e
 
 
-
 @ensure_annotations
 def create_directories(path_to_directories: list, verbose=True):
     """Create list of directories.
@@ -50,7 +50,6 @@ def create_directories(path_to_directories: list, verbose=True):
             logger.info(f"Created directory at: {path}")
 
 
-
 @ensure_annotations
 def save_json(path: Path, data: dict):
     """Save JSON data.
@@ -62,7 +61,6 @@ def save_json(path: Path, data: dict):
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
     logger.info(f"JSON file saved at: {path}")
-
 
 
 @ensure_annotations
@@ -81,7 +79,6 @@ def load_json(path: Path) -> ConfigBox:
         return ConfigBox(content)
 
 
-
 @ensure_annotations
 def save_bin(data: Any, path: Path):
     """Save binary file.
@@ -92,7 +89,6 @@ def save_bin(data: Any, path: Path):
     """
     joblib.dump(value=data, filename=path)
     logger.info(f"Binary file saved at: {path}")
-
 
 
 @ensure_annotations
@@ -110,7 +106,6 @@ def load_bin(path: Path) -> Any:
     return data
 
 
-
 @ensure_annotations
 def get_size(path: Path) -> str:
     """Get size in KB.
@@ -125,12 +120,12 @@ def get_size(path: Path) -> str:
     return f"{size_in_kb} KB"
 
 
-
 def decodeImage(imgstring, fileName):
     imgdata = base64.b64decode(imgstring)
-    with open(fileName, 'wb') as f:
+    with open(fileName, "wb") as f:
         f.write(imgdata)
     f.close()
+
 
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
