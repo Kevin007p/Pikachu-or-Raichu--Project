@@ -18,18 +18,20 @@ class ConfigurationManager:
         self.params = read_yaml(params_filepath)
 
         create_directories([self.config.artifacts_root])
-
+        
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
 
+        # Ensure the directories exist
         create_directories([config.root_dir])
+        
+        # Create a DataIngestionConfig without source_URL
         data_ingestion_config = DataIngestionConfig(
             root_dir=config.root_dir,
-            source_URL=config.source_URL,
             local_data_file=config.local_data_file,
-            unzip_dir=config.unzip_dir,
+            unzip_dir=config.unzip_dir
         )
-
+        
         return data_ingestion_config
     
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
@@ -71,7 +73,7 @@ class ConfigurationManager:
         training = self.config.training
         prepare_base_model = self.config.prepare_base_model
         params = self.params
-        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "SmallData")
+        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "Pokemon")
         
         create_directories([
             Path(training.root_dir)
@@ -93,7 +95,7 @@ class ConfigurationManager:
     def get_validation_config(self) -> EvaluationConfig:
         eval_config = EvaluationConfig(
             path_of_model=Path("artifacts/training/model.keras"),
-            training_data=Path("artifacts/data_ingestion/SmallData"),
+            training_data=Path("artifacts/data_ingestion/Pokemon"),
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE,

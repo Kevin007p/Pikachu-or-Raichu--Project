@@ -11,23 +11,24 @@ class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
         self.config = config
 
-    def download_file(self):
-        if not os.path.exists(self.config.local_data_file):
-            filename, headers = request.urlretrieve(
-                url=self.config.source_URL,
-                filename=self.config.local_data_file
-            )
-            logger.info(f"{filename} download! with following info: \n{headers}")
+    def check_local_file(self):
+        """
+        Check if the local file exists and log its size.
+        """
+        if os.path.exists(self.config.local_data_file):
+            logger.info(f"Local file found at: {self.config.local_data_file} of size: {get_size(Path(self.config.local_data_file))}")
         else:
-            logger.info(f"File already exists of size: {get_size(Path(self.config.local_data_file))}")
+            logger.error(f"Local file not found at: {self.config.local_data_file}")
+            raise FileNotFoundError(f"Local file not found at {self.config.local_data_file}")
 
     def extract_zip_file(self):
         """
         Extracts the zip file into the data directory.
-        Function returns None.
         """
         unzip_path = self.config.unzip_dir
         os.makedirs(unzip_path, exist_ok=True)
         with zipfile.ZipFile(self.config.local_data_file, 'r') as zip_ref:
             zip_ref.extractall(unzip_path)
+            logger.info(f"Extracted files to: {unzip_path}")
+
 

@@ -5,7 +5,7 @@ stages:
       - src/cnnClassifier/pipeline/stage_01_data_ingestion.py
       - config/config.yaml
     outs:
-      - artifacts/data_ingestion/SmallData
+      - artifacts/data_ingestion/Pokemon
 
   prepare_base_model:
     cmd: python src/cnnClassifier/pipeline/stage_02_prepare_base_model.py
@@ -27,7 +27,7 @@ stages:
       - src/cnnClassifier/pipeline/stage_03_training.py
       - src/cnnClassifier/components/prepare_callbacks.py
       - config/config.yaml
-      - artifacts/data_ingestion/SmallData
+      - artifacts/data_ingestion/Pokemon
       - artifacts/prepare_base_model
     params:
       - IMAGE_SIZE
@@ -42,7 +42,7 @@ stages:
     deps:
       - src/cnnClassifier/pipeline/stage_04_evaluation.py
       - config/config.yaml
-      - artifacts/data_ingestion/SmallData
+      - artifacts/data_ingestion/Pokemon
       - artifacts/training/model.keras
     params:
       - IMAGE_SIZE
