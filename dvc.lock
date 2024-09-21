@@ -1,0 +1,117 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/cnnClassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: ae9b3afd7e8bd1c4914dccfda433104e
+      size: 696
+    - path: src/cnnClassifier/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 0ca90ec0ff48bfe3283e530bf3181fe5
+      size: 949
+    outs:
+    - path: artifacts/data_ingestion/Pokemon
+      hash: md5
+      md5: 4cae72b64baba0122f7cd051d8e7f4e2.dir
+      size: 45407319
+      nfiles: 486
+  prepare_base_model:
+    cmd: python src/cnnClassifier/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: ae9b3afd7e8bd1c4914dccfda433104e
+      size: 696
+    - path: src/cnnClassifier/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: 32b02e9c79ec7c5ff3d019ee6c6b65db
+      size: 961
+    params:
+      params.yaml:
+        CLASSES: 2
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.01
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: e864b3e4ed43a29ec7751256d1f7d204.dir
+      size: 118061293
+      nfiles: 2
+  training:
+    cmd: python src/cnnClassifier/pipeline/stage_03_training.py
+    deps:
+    - path: artifacts/data_ingestion/Pokemon
+      hash: md5
+      md5: 4cae72b64baba0122f7cd051d8e7f4e2.dir
+      size: 45407319
+      nfiles: 486
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: e864b3e4ed43a29ec7751256d1f7d204.dir
+      size: 118061293
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: ae9b3afd7e8bd1c4914dccfda433104e
+      size: 696
+    - path: src/cnnClassifier/components/prepare_callbacks.py
+      hash: md5
+      md5: fd804d9adfcfc6708967fc91d51cb550
+      size: 980
+    - path: src/cnnClassifier/pipeline/stage_03_training.py
+      hash: md5
+      md5: 34d464cfa7f660aa8d2d5c1947077b9f
+      size: 1210
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 16
+        EPOCHS: 11
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: artifacts/training/model.keras
+      hash: md5
+      md5: 02db85c360aca1e430c18e6cb15c7041
+      size: 59537540
+  evaluation:
+    cmd: python src/cnnClassifier/pipeline/stage_04_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/Pokemon
+      hash: md5
+      md5: 4cae72b64baba0122f7cd051d8e7f4e2.dir
+      size: 45407319
+      nfiles: 486
+    - path: artifacts/training/model.keras
+      hash: md5
+      md5: 02db85c360aca1e430c18e6cb15c7041
+      size: 59537540
+    - path: config/config.yaml
+      hash: md5
+      md5: ae9b3afd7e8bd1c4914dccfda433104e
+      size: 696
+    - path: src/cnnClassifier/pipeline/stage_04_evaluation.py
+      hash: md5
+      md5: 5348ffce15c4446dee666603210b5663
+      size: 833
+    params:
+      params.yaml:
+        BATCH_SIZE: 16
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: a1b5b53b32935122b1d74ec7197913db
+      size: 71
