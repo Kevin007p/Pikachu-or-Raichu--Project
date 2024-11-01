@@ -44,5 +44,5 @@
 > - Managed resources in the **AWS Console** with **IAM** for access control.
 > - Built a **Docker image** of the source code and pushed it to **ECR**.
 > - Pulled the Docker image from **ECR** to **EC2** and launched the container.
-> - Currently turned off the deployment to avoid incurring costs.
+> - Currently turned off the deployment to avoid incurring costs!!!!!
 
