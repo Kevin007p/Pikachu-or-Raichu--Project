@@ -33,5 +33,10 @@
    python app.py
    ```
 
+4. Upload a picture and click predict :)
+
+   <img width="1154" alt="image" src="https://github.com/user-attachments/assets/0fda5e30-14a6-439a-a080-3fa1f297e007">
+
+
 
 
