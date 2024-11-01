@@ -1,5 +1,8 @@
 # Pikachu-or-Raichu--Project
 
+![Pikachu&Raichu](https://www.deviantart.com/dakotaatokad/art/Raichu-And-Pikachu-Render-620679777)
+
+
 ## How to Run?
 
 ### Steps:
