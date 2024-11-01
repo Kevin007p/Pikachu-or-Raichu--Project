@@ -1,6 +1,6 @@
 # Pikachu-or-Raichu--Project
 
-![Pikachu&Raichu](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4765f4b2-ede9-41ac-bab9-d68fad14ac2a/da9jbkx-971a3dd6-fded-4bf0-ac58-4deafeebb5fb.png/v1/fill/w_1192,h_670,q_70,strp/raichu_and_pikachu_render_by_dakotaatokad_da9jbkx-pre.jpg)
+<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4765f4b2-ede9-41ac-bab9-d68fad14ac2a/da9jbkx-971a3dd6-fded-4bf0-ac58-4deafeebb5fb.png/v1/fill/w_1192,h_670,q_70,strp/raichu_and_pikachu_render_by_dakotaatokad_da9jbkx-pre.jpg" alt="Pikachu and Raichu" width="500">
 
 
 ## How to Run?
