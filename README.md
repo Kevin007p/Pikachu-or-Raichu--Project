@@ -5,8 +5,9 @@
 ### Steps:
 1. Clone the repository:
 
-   [https://github.com/Kevin007p/Pikachu-or-Raichu--Project](https://github.com/Kevin007p/Pikachu-or-Raichu--Project)
-
+   ```
+   https://github.com/Kevin007p/Pikachu-or-Raichu--Project
+   ```
 
 
 
