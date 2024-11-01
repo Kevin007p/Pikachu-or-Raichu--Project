@@ -38,5 +38,11 @@
    <img width="1154" alt="image" src="https://github.com/user-attachments/assets/0fda5e30-14a6-439a-a080-3fa1f297e007">
 
 
-
+> **Note:**
+> - Used **DVC** for data version control.
+> - Implemented **AWS CI/CD deployment** using **GitHub Actions**.
+> - Managed resources in the **AWS Console** with **IAM** for access control.
+> - Built a **Docker image** of the source code and pushed it to **ECR**.
+> - Pulled the Docker image from **ECR** to **EC2** and launched the container.
+> - Currently turned off the deployment to avoid incurring costs.
 
